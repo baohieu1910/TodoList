@@ -25,13 +25,27 @@ struct AddTodoView: View {
                     DatePicker("Date", selection: $date)
                         .datePickerStyle(.graphical)
                 }
-            }
             
-            Button {
-                todoListViewModel.addTodo(name: name, date: date)
-                dismiss()
-            } label: {
-                Text("Add")
+                if name == "" {
+                    Text("Add")
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(10)
+                        .background(.gray)
+                        .cornerRadius(10)
+                } else {
+                    Button {
+                        todoListViewModel.addTodo(name: name, date: date)
+                        dismiss()
+                    } label: {
+                        Text("Add")
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(10)
+                            .background(.blue)
+                            .cornerRadius(10)
+                    }
+                }
             }
         }
     }

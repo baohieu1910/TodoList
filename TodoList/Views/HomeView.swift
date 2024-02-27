@@ -9,50 +9,82 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var todoListViewModel = TodoListViewModel()
-    
+    @ObservedObject var colorSchemeManager = ColorSchemeManager.shared
     @State var searchText = ""
     @State var showAddSheet = false
-    
     var body: some View {
         NavigationView {
-//            ScrollView(showsIndicators: false) {
-//
-//            }
-            ScrollView(showsIndicators: false) {
-                Divider()
-                ForEach(todoListViewModel.todos) { todo in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("\(todo.name ?? "N/A")")
-                                .lineLimit(1)
+            VStack {
+                ScrollView {
+                    ForEach(todoListViewModel.todos) { todo in
+                        Divider()
+                        HStack {
+                            Button {
+                                todo.makeItDone()
+                                todoListViewModel.updateTodoList()
+                            } label: {
+                                Image(systemName: todo.isDone ? "checkmark.circle" : "circle")
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundColor(colorSchemeManager.isLightMode ? .black : .white)
+                                    .padding(.horizontal, 10)
+                            }
                             
-                            Text("\(todo.date?.timeZoneVN() ?? Date.now.timeZoneVN())")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+                            VStack(alignment: .leading) {
+                                Text("\(todo.name ?? "N/A")")
+                                    .foregroundColor(colorSchemeManager.isLightMode ? .black : .white)
+                                    .font(.system(size: 20))
+                                    .lineLimit(1)
+                                
+                                HStack {
+                                    Text("\(todo.date?.getTime() ?? Date.now.getTime())")
+                                        .font(.subheadline)
+                                        .foregroundColor(todo.date ?? Date.now > Date.now ? .gray : .red)
+                                    
+                                    Text("\(todo.date?.getDate() ?? Date.now.getDate())")
+                                        .font(.subheadline)
+                                        .foregroundColor(todo.date ?? Date.now > Date.now ? .gray : .red)
+                                }
+                                
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            Divider()
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Spacer()
-                       
-                        Text(todo.isDone ? "Completed" : "Pending")
-                            .padding(10)
-                            .background(todo.isDone ? Color.green : Color.orange)
-                            .cornerRadius(90)
                     }
-                    Divider()
+                }
+                
+                Divider()
+                
+                Button {
+                    showAddSheet.toggle()
+                } label: {
+                    HStack {
+                        Image(systemName: "plus")
+                        
+                        Text("Add Todo")
+                            .padding()
+                    }
+                }
+                .sheet(isPresented: $showAddSheet) {
+                    AddTodoView(todoListViewModel: todoListViewModel)
                 }
             }
             .padding(.horizontal)
             .navigationTitle("Todo List")
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        todoListViewModel.deleteAllTodos()
+                    } label: {
+                        Text("Remove All")
+                    }
+                }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        showAddSheet.toggle()
+                        ColorSchemeManager.shared.changeColorScheme()
                     } label: {
-                        Image(systemName: "plus")
-                    }
-                    .sheet(isPresented: $showAddSheet) {
-                        AddTodoView(todoListViewModel: todoListViewModel)
+                        Image(systemName: colorSchemeManager.isLightMode ? "sun.max" : "moon")
                     }
                 }
             }
@@ -60,7 +92,11 @@ struct HomeView: View {
                 
             }
         }
+        .environment(\.colorScheme, colorSchemeManager.isLightMode ? .light : .dark)
+        
     }
+    
+    
 }
 
 struct HomeView_Previews: PreviewProvider {

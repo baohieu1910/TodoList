@@ -19,7 +19,14 @@ class TodoListViewModel: ObservableObject {
 
 extension TodoListViewModel {
     func getAllTodos() {
-        todos = CoreDataManager.shared.getAllTodos()
+        todos = CoreDataManager.shared.getAllTodos().sorted(by: { lhs, rhs in
+            lhs.date ?? Date.now < rhs.date ?? Date.now
+        })
+    }
+    
+    func updateTodoList() {
+        CoreDataManager.shared.saveContext()
+        getAllTodos()
     }
     
     func addTodo(name: String, date: Date) {
@@ -37,6 +44,13 @@ extension TodoListViewModel {
     func deleteTodo(todo: Todo) {
         CoreDataManager.shared.deleteTodo(todo: todo)
         getAllTodos()
+    }
+    
+    func deleteAllTodos() {
+        for todo in todos {
+            CoreDataManager.shared.deleteTodo(todo: todo)
+        }
+        updateTodoList()
     }
 }
 

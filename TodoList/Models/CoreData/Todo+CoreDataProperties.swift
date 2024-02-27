@@ -24,5 +24,7 @@ extension Todo {
 }
 
 extension Todo : Identifiable {
-
+    func makeItDone() {
+        isDone = true
+    }
 }

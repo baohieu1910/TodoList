@@ -19,6 +19,8 @@
 		A46D9AD42B8DEE0F00A9DFB7 /* Todo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46D9AD22B8DEE0F00A9DFB7 /* Todo+CoreDataClass.swift */; };
 		A46D9AD52B8DEE0F00A9DFB7 /* Todo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46D9AD32B8DEE0F00A9DFB7 /* Todo+CoreDataProperties.swift */; };
 		A4F9808B2B8DF27300366C3C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F9808A2B8DF27300366C3C /* Date.swift */; };
+		A4F9808D2B8E00F000366C3C /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F9808C2B8E00F000366C3C /* UIScreen.swift */; };
+		A4F9808F2B8E2C2E00366C3C /* ColorSchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F9808E2B8E2C2E00366C3C /* ColorSchemeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		A46D9AD22B8DEE0F00A9DFB7 /* Todo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A46D9AD32B8DEE0F00A9DFB7 /* Todo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A4F9808A2B8DF27300366C3C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		A4F9808C2B8E00F000366C3C /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
+		A4F9808E2B8E2C2E00366C3C /* ColorSchemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				A46D9AC02B8CEE8200A9DFB7 /* CoreDataManager.swift */,
+				A4F9808E2B8E2C2E00366C3C /* ColorSchemeManager.swift */,
 				A46D9ACD2B8DC12000A9DFB7 /* CoreData */,
 			);
 			path = Models;
@@ -127,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				A4F9808A2B8DF27300366C3C /* Date.swift */,
+				A4F9808C2B8E00F000366C3C /* UIScreen.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -207,6 +213,8 @@
 				A46D9AAA2B8CEACB00A9DFB7 /* ContentView.swift in Sources */,
 				A46D9AD42B8DEE0F00A9DFB7 /* Todo+CoreDataClass.swift in Sources */,
 				A46D9AD52B8DEE0F00A9DFB7 /* Todo+CoreDataProperties.swift in Sources */,
+				A4F9808F2B8E2C2E00366C3C /* ColorSchemeManager.swift in Sources */,
+				A4F9808D2B8E00F000366C3C /* UIScreen.swift in Sources */,
 				A46D9AA82B8CEACB00A9DFB7 /* TodoListApp.swift in Sources */,
 				A46D9AB72B8CEB1F00A9DFB7 /* TodoList.xcdatamodeld in Sources */,
 				A46D9AC92B8CF2DD00A9DFB7 /* TodoListViewModel.swift in Sources */,

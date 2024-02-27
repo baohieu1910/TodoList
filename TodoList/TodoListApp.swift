@@ -12,7 +12,7 @@ struct TodoListApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .preferredColorScheme(.light)
+                .preferredColorScheme(ColorSchemeManager.shared.isLightMode ? .light : .dark)
                 .environment(\.managedObjectContext, CoreDataManager.shared.viewContext)
         }
     }
